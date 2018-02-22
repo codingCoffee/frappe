@@ -118,7 +118,7 @@ def split_emails(txt):
 	for email in re.split('''[,\\n](?=(?:[^"]|"[^"]*")*$)''', s):
 		email = strip(cstr(email))
 		if email:
-			email_list.append(email)
+			email_list.append(email.encode("utf-8"))
 
 	return email_list
 
