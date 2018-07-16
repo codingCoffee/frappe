@@ -456,7 +456,7 @@ frappe._.is_mobile = () => {
 frappe._.compact   = array => array.filter(Boolean)
 
 // extend utils to base.
-frappe.utils       = { ...frappe.utils, ...frappe._ }
+frappe.utils       = { ...frappe.utils, ...frappe._ };
 
 // frappe extensions
 
@@ -1708,7 +1708,7 @@ class extends Component {
 			})
 		}})
 
-		const component  = layout === frappe.Chat.Layout.POPPER ?
+		const component  = this.layout === frappe.Chat.Layout.POPPER ?
 			h(frappe.Chat.Widget.Popper, { heading: ActionBar, page: state.room.name && Room, target: props.target,
 				toggle: (t) => this.set_state({ toggle: t }) },
 				RoomList
@@ -1728,7 +1728,7 @@ class extends Component {
 
 		return (
 			h("div", { class: "frappe-chat" },
-				component
+				this.state.toggle ? component : null // test this for frappe chat x
 			)
 		)
 	}
@@ -2353,7 +2353,7 @@ class extends Component {
 	}
 
 	render  ( ) {
-		const { props } = this
+		const { props } = this;
 		const creation 	= props.creation.format('hh:mm A')
 
 		const me        = props.user === frappe.session.user
