@@ -1,0 +1,10 @@
+{
+	"India": [
+		{ "title": "Maharashtra", "parent": [] }
+		{ "title": "Mumbai", "parent": ["Maharashtra"], "administrative_area_type": "City" }
+		{ "title": "Pune", "parent": ["Maharashtra"],  "administrative_area_type": "City" }
+		{ "title": "400063", "parent": ["Maharashtra", "Mumbai"],  "administrative_area_type": "Pincode" }
+		{ "title": "400063", "parent": ["Maharashtra", "Pune"],  "administrative_area_type": "Picode" }
+		{ "title": "Pune", "parent": ["Rajasthan"],  "administrative_area_type": "City" }
+	]
+}
