@@ -294,8 +294,9 @@ Did you mean "bench mariadb"?
 """)
 
 @click.command('mariadb')
+@click.option('--less', is_flag=True, default=False, help="Pipe through less")
 @pass_context
-def mariadb(context):
+def mariadb(context, less=False):
 	"""
 		Enter into mariadb console for a given site.
 	"""
@@ -312,7 +313,7 @@ def mariadb(context):
 		'-p'+frappe.conf.db_password,
 		frappe.conf.db_name,
 		'-h', frappe.conf.db_host or "localhost",
-		'--pager=less -SFX',
+		'--pager=less -SFX' if less else '--pager',
 		"-A"])
 
 @click.command('console')
