@@ -356,7 +356,7 @@ frappe.views.ListSidebar = Class.extend({
 		// if account is holding one user free plan or
 		// if account's expiry date within range of 30 days from today's date
 
-		let upgrade_date = frappe.datetime.add_days(get_today(), 30);
+		let upgrade_date = frappe.datetime.add_days(frappe.datetime.get_today(), 30);
 		if (frappe.boot.limits.users === 1 || upgrade_date >= frappe.boot.limits.expiry) {
 			let upgrade_box = $(`<div class="border" style="
 					padding: 0px 10px;
