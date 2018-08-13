@@ -58,6 +58,13 @@ frappe.ready(function() {
 		return false;
 	});
 
+	// delete
+	$(".btn-form-delete").on("click", function() {
+		let data = frappe.web_form.get_values();
+		delete_form();
+		return false;
+	});
+
 	// change section
 	$('.btn-change-section, .slide-progress .fa-fw').on('click', function() {
 		var idx = $(this).attr('data-idx');
@@ -85,6 +92,31 @@ frappe.ready(function() {
 		$('.web-form-page[data-idx="'+idx+'"]')
 			.removeClass('hidden')
 			.find(':input:first').focus();
+
+	};
+
+	function delete_form() {
+		let data = frappe.web_form.get_values();
+		if (!data) {
+			return false;
+		}
+
+		var name = $(this).attr("data-name");
+		if(name) {
+			frappe.call({
+				type:"POST",
+				method: "frappe.website.doctype.web_form.web_form.delete",
+				args: {
+					"web_form": frappe.web_form_name,
+					"name": name
+				},
+				callback: function(r) {
+					if(!r.exc) {
+						location.reload();
+					}
+				}
+			});
+		}
 
 	};
 

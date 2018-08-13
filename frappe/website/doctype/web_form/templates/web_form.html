@@ -144,6 +144,10 @@
 				{%- endif -%}
 				<!-- save/next button -->
 				{% if (loop.index == layout|len or frappe.form_dict.new) %}
+					{% if allow_edit %}
+					<a href="{{ pathname }}" class="btn btn-default btn-sm btn-form-delete">
+				    	{{ _("Delete") }}</a>
+					{% endif %}
 					{% if not read_only %}
 				    <button type="submit" class="btn btn-primary btn-sm btn-form-submit">
 				    	{{ _("Save") }}</button>
