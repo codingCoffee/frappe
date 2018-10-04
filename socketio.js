@@ -8,6 +8,7 @@ var redis = require("redis");
 var request = require('superagent');
 
 var conf = get_conf();
+
 var flags = {};
 var files_struct = {
 	name: null,
