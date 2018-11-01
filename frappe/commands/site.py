@@ -123,6 +123,21 @@ def restore(context, sql_file_path, mariadb_root_username=None, mariadb_root_pas
 		private = extract_tar_files(site, with_private_files, 'private')
 		os.remove(private)
 
+@click.command('enable-two-factor-auth')
+@click.argument('state')
+@pass_context
+def enable_two_factor_auth(context, state=True):
+	if state.lower() == 'true': state=True
+	from frappe.twofactor import toggle_two_factor_auth
+	site = get_site(context)
+	try:
+		frappe.init(site=site)
+		frappe.connect()
+		toggle_two_factor_auth(state, roles=['All'])
+		frappe.db.commit()
+	finally:
+		frappe.destroy()
+
 @click.command('reinstall')
 @click.option('--admin-password', help='Administrator Password for reinstalled site')
 @click.option('--yes', is_flag=True, default=False, help='Pass --yes to skip confirmation')
@@ -570,4 +585,5 @@ commands = [
 	_use,
 	set_last_active_for_user,
 	publish_realtime,
+	enable_two_factor_auth,
 ]
